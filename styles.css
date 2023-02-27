@@ -2,11 +2,14 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+    background: #be3144;
 }
 
 .container {
+    display: flex;
+    flex: 1 1 auto;
+    flex-wrap: wrap;
     height: 100vh;
-    border: 1px solid red;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -14,24 +17,47 @@
 
 .calculator {
     border: 5px solid black;
-    height: 650px;
-    width: 500px;
+    min-height: 650px;
+    background: #303841;
+    max-width: 550px;
 }
 
 .screen {
+    margin: 10px;
+    margin-bottom: 20px;
+    max-width: 520px;
+    border: 5px solid #2a2438;
+    box-shadow: 5px 5px 5px black;
+    min-height: 150px;
+    background: #d3d6db;
+    font-size: 50px;
+}
+
+
+
+button {
+    box-shadow: 5px 5px 5px black;
+    height: 60px;
+    width: 100px;
+    background: #be3144;
     border: 3px solid black;
-    height: 150px;
-    margin: 20px;
+    transition: .2s;
+}
+
+button:hover {
+    transform: scale(1.1);
 }
 
 .btns {
+    background: #303841;
     display: flex;
     justify-content: center;
     gap: 20px;
     flex-wrap: wrap;
 }
 
-button {
-    height: 60px;
-    width: 100px;
+.equal {
+    width: 100%;
+    margin-left: 50px;
+    margin-right: 50px;
 }
