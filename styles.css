@@ -23,9 +23,7 @@
 }
 
 .screen {
-    margin: 10px;
-    margin-bottom: 20px;
-    max-width: 520px;
+    margin: 20px;
     border: 5px solid #2a2438;
     box-shadow: 5px 5px 5px black;
     min-height: 150px;
@@ -42,6 +40,8 @@ button {
     background: #be3144;
     border: 3px solid black;
     transition: .2s;
+    font-weight: bold;
+    font-size: 20px;
 }
 
 button:hover {
@@ -60,4 +60,13 @@ button:hover {
     width: 100%;
     margin-left: 50px;
     margin-right: 50px;
+}
+
+.nums {
+    background: #303841;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
 }

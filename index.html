@@ -12,13 +12,25 @@
 <body>
     <div class="container">
         <div class="calculator">
-            <input type="text" placeholder="Enter Numbers" class="screen"></input>
+            <div class="screen">Enter Numbers</div>
+            <div class="nums">
+                <button class="numButton" value="0">0</button>
+                <button class="numButton">1</button>
+                <button class="numButton">2</button>
+                <button class="numButton">3</button>
+                <button class="numButton">4</button>
+                <button class="numButton">5</button>
+                <button class="numButton">6</button>
+                <button class="numButton">7</button>
+                <button class="numButton">8</button>
+                <button class="numButton">9</button>
+            </div>
             <div class="btns">
-                <button>Add</button>
-                <button>Subtract</button>
-                <button>Multiply</button>
-                <button>Divide</button>
-                <button class='equal'>Equal</button>
+                <button class=onclick="nums()">+</button>
+                <button onclick="nums()">-</button>
+                <button onclick="nums()">*</button>
+                <button onclick="nums()">/</button>
+                <button class='equal'>=</button>
             </div>
         </div>
     </div>
