@@ -1,10 +1,12 @@
 let currentOperator = ''
-let nums = []
+const nums = []
 let numbers = ''
+let sum = 0
 
 let numBtns = document.querySelectorAll(".numButton")
 let operBtns = document.querySelectorAll(".operButton")
 let calcScreen = document.querySelector('.screen')
+let equal = document.querySelector('.equal')
 
 
 operBtns.forEach((button) =>
@@ -15,6 +17,10 @@ operBtns.forEach((button) =>
 numBtns.forEach((button) =>
     button.addEventListener('click', () => appendNumber(button.textContent))
 );
+
+equal.addEventListener('click', function () {
+    operate(nums)
+})
 
 function appendNumber(number) {
     calcScreen.innerHTML += number
@@ -27,24 +33,39 @@ function setOperation(id) {
     calcScreen.innerHTML = ''
     if (id === '+') {
         console.log(id)
-        nums.push(numbers)
+        nums.push(Number(numbers))
         console.log(nums)
         numbers = ''
         return currentOperator = 'add'
     } else if (id === '-') {
-        nums.push(numbers)
+        nums.push(Number(numbers))
         console.log(id)
         numbers = ''
         return currentOperator = 'subtract'
     } else if (id === '*') {
-        nums.push(numbers)
+        nums.push(Number(numbers))
         console.log(id)
         numbers = ''
         return currentOperator = 'multiply'
     } else {
-        nums.push(numbers)
+        nums.push(Number(numbers))
         console.log(id)
         numbers = ''
         return currentOperator = 'division'
+    }
+}
+
+function operate(array) {
+    if (currentOperator === 'add') {
+        array.forEach(item => {
+            sum += item;
+        });
+        console.log(sum)
+    } else if (currentOperator === 'subtract') {
+
+    } else if (currentOperator === 'multiply') {
+
+    } else {
+
     }
 }
