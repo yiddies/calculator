@@ -2,6 +2,7 @@ let currentOperator = ''
 let nums = []
 let numbers = ''
 let sum = Number('')
+let on = true
 
 let numBtns = document.querySelectorAll(".numButton")
 let operBtns = document.querySelectorAll(".operButton")
@@ -29,10 +30,14 @@ clear.addEventListener('click', () => clearScreen())
 
 
 function appendNumber(number) {
-    calcScreen.innerHTML += number
-    numbers += number
-    console.log(numbers)
-    return numbers;
+    if (on === true) {
+        calcScreen.innerHTML += number
+        numbers += number
+        console.log(numbers)
+        return numbers;
+    } else {
+        console.log('ERROR')
+    }
 }
 function setOperation(id) {
     nums = []
@@ -75,6 +80,7 @@ function operate(array) {
         calcScreen.innerHTML = sum
         console.log(sum)
         numbers = ''
+        on = false
     } else if (currentOperator === 'subtract') {
         sum = array[0]
         for (let i = 1; i < array.length; i++) {
@@ -85,6 +91,7 @@ function operate(array) {
         calcScreen.innerHTML = sum
         console.log(sum)
         numbers = ''
+        on = false
     } else if (currentOperator === 'multiply') {
         array.forEach(item => {
             sum *= item;
@@ -94,6 +101,7 @@ function operate(array) {
         console.log(sum)
         nums = []
         numbers = ''
+        on = false
     } else {
         array.forEach(item => {
             sum /= item;
@@ -103,6 +111,7 @@ function operate(array) {
         nums = []
         calcScreen.innerHTML = sum
         numbers = ''
+        on = false
 
     }
 }
@@ -113,6 +122,7 @@ function clearScreen() {
     numbers = ''
     sum = Number('')
     calcScreen.innerHTML = ''
+    on = true
 
     console.log(currentOperator)
     console.log(nums)
