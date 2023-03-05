@@ -3,14 +3,16 @@ let nums = []
 let numbers = ''
 let sum = Number('')
 let on = true
-
+let numberTwo = ''
 let numBtns = document.querySelectorAll(".numButton")
 let operBtns = document.querySelectorAll(".operButton")
 let calcScreen = document.querySelector('.screen')
 let equal = document.querySelector('.equal')
 let clear = document.querySelector('.clear')
 
-
+function test() {
+    console.log(nums)
+}
 operBtns.forEach((button) =>
     button.addEventListener('click', () => setOperation(button.textContent))
 );
@@ -30,18 +32,28 @@ clear.addEventListener('click', () => clearScreen())
 
 
 function appendNumber(number) {
-    if (on === true) {
-        calcScreen.innerHTML += number
-        numbers += number
-        console.log(numbers)
-        return numbers;
-    } else {
-        console.log('ERROR')
-    }
+    calcScreen.innerHTML += number
+    numbers += number
+    console.log(numbers)
+    return numbers;
+
+}
+
+function setOperation(id) {
+    if (id === '+') {
+        currentOperator = 'add'
+        if (numbers === '') {
+
+        }
+    } else if (id === '-') {
+
+    } else if (id === '*') {
+
+    } else if (id === '/')
 }
 function setOperation(id) {
-    nums = []
     calcScreen.innerHTML = ''
+
     if (id === '+') {
         console.log(id)
         nums.push(Number(numbers))
@@ -75,44 +87,40 @@ function operate(array) {
         array.forEach(item => {
             sum += item;
         });
-        nums.push(Number(numbers))
-        nums = []
+        console.log(nums)
         calcScreen.innerHTML = sum
         console.log(sum)
-        numbers = ''
         on = false
     } else if (currentOperator === 'subtract') {
         sum = array[0]
         for (let i = 1; i < array.length; i++) {
             sum -= array[i];
         }
-        nums.push(Number(numbers))
-        nums = []
+        console.log(nums)
         calcScreen.innerHTML = sum
         console.log(sum)
         numbers = ''
         on = false
     } else if (currentOperator === 'multiply') {
-        array.forEach(item => {
-            sum *= item;
-        });
-        nums.push(Number(numbers))
+        sum = array[0]
+        for (let i = 1; i < array.length; i++) {
+            sum *= array[i];
+        }
+        console.log(nums)
         calcScreen.innerHTML = sum
         console.log(sum)
-        nums = []
         numbers = ''
         on = false
     } else {
-        array.forEach(item => {
-            sum /= item;
-        });
-        nums.push(Number(numbers))
-        console.log(sum)
-        nums = []
+        sum = array[0]
+        for (let i = 1; i < array.length; i++) {
+            sum /= array[i];
+        }
+        console.log(nums)
         calcScreen.innerHTML = sum
+        console.log(sum)
         numbers = ''
         on = false
-
     }
 }
 
@@ -123,9 +131,4 @@ function clearScreen() {
     sum = Number('')
     calcScreen.innerHTML = ''
     on = true
-
-    console.log(currentOperator)
-    console.log(nums)
-    console.log(numbers)
-    console.log(sum)
 }
