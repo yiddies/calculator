@@ -1,134 +1,73 @@
-let currentOperator = ''
-let nums = []
-let numbers = ''
-let sum = Number('')
-let on = true
-let numberTwo = ''
-let numBtns = document.querySelectorAll(".numButton")
-let operBtns = document.querySelectorAll(".operButton")
-let calcScreen = document.querySelector('.screen')
-let equal = document.querySelector('.equal')
-let clear = document.querySelector('.clear')
+let currentOperator = '';
+let numbersArray = [];
+let currentNumber = '';
+let total = 0;
 
-function test() {
-    console.log(nums)
-}
-operBtns.forEach((button) =>
-    button.addEventListener('click', () => setOperation(button.textContent))
-);
+const numberButtons = document.querySelectorAll('.numButton');
+const operatorButtons = document.querySelectorAll('.operButton');
+const calcScreen = document.querySelector('.screen');
+const equalButton = document.querySelector('.equal');
+const clearButton = document.querySelector('.clear');
 
+operatorButtons.forEach((button) => {
+    button.addEventListener('click', () => {
+        setOperation(button.textContent);
+    });
+});
 
-numBtns.forEach((button) =>
-    button.addEventListener('click', () => appendNumber(button.textContent))
-);
+numberButtons.forEach((button) => {
+    button.addEventListener('click', () => {
+        appendNumber(button.textContent);
+    });
+});
 
-equal.addEventListener('click', function () {
-    nums.push(Number(numbers))
-    operate(nums)
-})
+equalButton.addEventListener('click', () => {
+    calculateTotal();
+});
 
-clear.addEventListener('click', () => clearScreen())
-
-
+clearButton.addEventListener('click', () => {
+    clearScreen();
+});
 
 function appendNumber(number) {
-    calcScreen.innerHTML += number
-    numbers += number
-    console.log(numbers)
-    return numbers;
-
+    currentNumber += number;
+    calcScreen.textContent = currentNumber;
 }
 
-function setOperation(id) {
-    if (id === '+') {
-        currentOperator = 'add'
-        if (numbers === '') {
-
-        }
-    } else if (id === '-') {
-
-    } else if (id === '*') {
-
-    } else if (id === '/')
-}
-function setOperation(id) {
-    calcScreen.innerHTML = ''
-
-    if (id === '+') {
-        console.log(id)
-        nums.push(Number(numbers))
-        console.log(nums)
-        numbers = ''
-        return currentOperator = 'add'
-    } else if (id === '-') {
-        nums.push(Number(numbers))
-
-        console.log(id)
-        console.log(nums)
-        numbers = ''
-        return currentOperator = 'subtract'
-    } else if (id === '*') {
-        nums.push(Number(numbers))
-        console.log(id)
-        console.log(nums)
-        numbers = ''
-        return currentOperator = 'multiply'
-    } else {
-        nums.push(Number(numbers))
-        console.log(id)
-        console.log(nums)
-        numbers = ''
-        return currentOperator = 'division'
-    }
+function setOperation(operator) {
+    numbersArray.push(Number(currentNumber));
+    currentNumber = '';
+    currentOperator = operator;
 }
 
-function operate(array) {
-    if (currentOperator === 'add') {
-        array.forEach(item => {
-            sum += item;
+function calculateTotal() {
+    numbersArray.push(Number(currentNumber));
+    if (currentOperator === '+') {
+        total = numbersArray.reduce((accumulator, currentValue) => {
+            return accumulator + currentValue;
         });
-        console.log(nums)
-        calcScreen.innerHTML = sum
-        console.log(sum)
-        on = false
-    } else if (currentOperator === 'subtract') {
-        sum = array[0]
-        for (let i = 1; i < array.length; i++) {
-            sum -= array[i];
-        }
-        console.log(nums)
-        calcScreen.innerHTML = sum
-        console.log(sum)
-        numbers = ''
-        on = false
-    } else if (currentOperator === 'multiply') {
-        sum = array[0]
-        for (let i = 1; i < array.length; i++) {
-            sum *= array[i];
-        }
-        console.log(nums)
-        calcScreen.innerHTML = sum
-        console.log(sum)
-        numbers = ''
-        on = false
-    } else {
-        sum = array[0]
-        for (let i = 1; i < array.length; i++) {
-            sum /= array[i];
-        }
-        console.log(nums)
-        calcScreen.innerHTML = sum
-        console.log(sum)
-        numbers = ''
-        on = false
+    } else if (currentOperator === '-') {
+        total = numbersArray.reduce((accumulator, currentValue) => {
+            return accumulator - currentValue;
+        });
+    } else if (currentOperator === '*') {
+        total = numbersArray.reduce((accumulator, currentValue) => {
+            return accumulator * currentValue;
+        });
+    } else if (currentOperator === '/') {
+        total = numbersArray.reduce((accumulator, currentValue) => {
+            return accumulator / currentValue;
+        });
     }
+    calcScreen.textContent = total;
+    numbersArray = [total];
+    currentNumber = '';
 }
 
 function clearScreen() {
-    currentOperator = ''
-    nums = []
-    numbers = ''
-    sum = Number('')
-    calcScreen.innerHTML = ''
-    on = true
+    currentOperator = '';
+    numbersArray = [];
+    currentNumber = '';
+    total = 0;
+    calcScreen.textContent = '';
 }
